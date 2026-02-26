@@ -1,0 +1,24 @@
+/* ── variables.css ── */
+:root {
+  --red:        #e81b1b;
+  --red-dark:   #b01010;
+  --red-light:  rgba(232,27,27,0.12);
+  --black:      #0a0a0a;
+  --dark:       #111111;
+  --dark2:      #1a1a1a;
+  --dark3:      #242424;
+  --gray:       #888888;
+  --gray-light: #cccccc;
+  --white:      #f5f5f5;
+  --gold:       #d4a017;
+
+  --font-display: 'Bebas Neue', cursive;
+  --font-cond:    'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+
+  --radius:   4px;
+  --shadow:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-sm:0 4px 16px rgba(0,0,0,0.3);
+  --transition: 0.3s ease;
+  --container: 1280px;
+}

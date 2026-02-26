@@ -1,0 +1,47 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="eyebrow">Our Catalogue</div>
+    <h1 class="page-title">ALL PRODUCTS</h1>
+    <p class="page-sub">Browse <%= products.length %> results<% if(filters.category){ %> in <strong><%= filters.category %></strong><% } %><% if(filters.q){ %> matching "<strong><%= filters.q %></strong>"<% } %></p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+      <form action="/products" method="GET" class="filter-form">
+        <input type="text" name="q" value="<%= filters.q||'' %>" placeholder="Search parts..." class="filter-search">
+        <select name="category" class="filter-select">
+          <option value="">All Categories</option>
+          <% categories.forEach(c => { %>
+          <option value="<%= c.id %>" <%= filters.category===c.id?'selected':'' %>><%= c.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit" class="btn-primary">Filter</button>
+        <a href="/products" class="btn-outline">Clear</a>
+      </form>
+    </div>
+
+    <% if(products.length === 0) { %>
+    <div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h3>No parts found</h3>
+      <p>Try a different search term or category.</p>
+      <a href="/products" class="btn-primary">View All Parts</a>
+    </div>
+    <% } else { %>
+    <div class="products-grid">
+      <% products.forEach(p => { %>
+      <%- include('../partials/product-card', { p }) %>
+      <% }) %>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

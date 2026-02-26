@@ -1,0 +1,29 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="eyebrow">Our Coverage</div>
+    <h1 class="page-title">ALL BIKE BRANDS</h1>
+    <p class="page-sub"><%= brands.length %> brands · Every major manufacturer covered</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="brands-grid brands-grid-large">
+      <% brands.forEach(brand => { %>
+      <a href="/brands/<%= brand.id %>" class="brand-card brand-card-lg reveal-item">
+        <div class="brand-icon lg"><%= brand.emoji %></div>
+        <div class="brand-name"><%= brand.name %></div>
+        <div class="brand-country"><%= brand.country %></div>
+        <div class="brand-count"><%= brand.count.toLocaleString() %>+ Parts</div>
+        <div class="brand-arrow">→</div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

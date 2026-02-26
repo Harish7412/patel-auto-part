@@ -1,0 +1,24 @@
+<div class="product-card reveal-item">
+  <div class="product-img-wrap">
+    <img src="<%= p.img %>" alt="<%= p.name %>" loading="lazy">
+    <% if (p.badge) { %>
+    <div class="product-badge"><%= p.badge %></div>
+    <% } %>
+    <button class="product-wishlist" aria-label="Wishlist">♡</button>
+  </div>
+  <div class="product-info">
+    <div class="product-brand-tag"><%= p.brand %></div>
+    <a href="/products/<%= p.id %>" class="product-name"><%= p.name %></a>
+    <div class="product-compat"><%= p.compat %></div>
+    <div class="product-rating">
+      <span class="stars"><%= '★'.repeat(p.rating) %><%= '☆'.repeat(5-p.rating) %></span>
+      <span class="review-count">(<%= p.reviews %>)</span>
+    </div>
+    <div class="product-footer">
+      <div class="product-price"><span class="currency">₹</span><%= p.price.toLocaleString() %></div>
+      <button class="btn-add-cart" data-id="<%= p.id %>" aria-label="Add to cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="eyebrow">Get In Touch</div>
+    <h1 class="page-title">CONTACT US</h1>
+    <p class="page-sub">We're here to help you find the right part</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        <% if(success) { %>
+        <div class="success-msg">
+          <div class="success-icon">✅</div>
+          <h3>Message Sent!</h3>
+          <p>We'll get back to you within 24 hours.</p>
+        </div>
+        <% } else { %>
+        <h3 class="form-title">Send Us a Message</h3>
+        <form action="/contact" method="POST" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Rajesh Sharma">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="bike">Your Bike Model</label>
+            <input type="text" id="bike" name="bike" placeholder="e.g. Royal Enfield Classic 350 2022">
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell us which part you're looking for..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full">Send Message →</button>
+        </form>
+        <% } %>
+      </div>
+
+      <!-- Info -->
+      <div class="contact-info">
+        <h3 class="form-title">Visit Our Store</h3>
+        <div class="info-card">
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div>
+              <strong>Address</strong>
+              <p>Shop No. 14–16, Sindhi Camp Spare Parts Market,<br>Jaipur, Rajasthan – 302001</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <div>
+              <strong>Phone</strong>
+              <p>+91 98290 XXXXX<br>+91 94130 XXXXX</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">✉️</span>
+            <div>
+              <strong>Email</strong>
+              <p>parts@patelauto.in<br>support@patelauto.in</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <div>
+              <strong>Store Hours</strong>
+              <p>Monday – Saturday: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <div class="map-inner">
+            <span>📍</span>
+            <p>Sindhi Camp Market, Jaipur</p>
+            <small>Rajasthan, India</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

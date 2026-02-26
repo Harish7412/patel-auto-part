@@ -1,0 +1,86 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/products">Products</a> <span>›</span>
+      <a href="/products?category=<%= product.category %>"><%= product.category %></a> <span>›</span>
+      <span><%= product.name %></span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="detail-grid">
+
+      <!-- Image -->
+      <div class="detail-img-wrap">
+        <img src="<%= product.img %>" alt="<%= product.name %>" class="detail-img">
+        <% if(product.badge) { %>
+        <div class="product-badge detail-badge"><%= product.badge %></div>
+        <% } %>
+      </div>
+
+      <!-- Info -->
+      <div class="detail-info">
+        <div class="product-brand-tag big"><%= product.brand %></div>
+        <h1 class="detail-title"><%= product.name %></h1>
+        <div class="detail-rating">
+          <span class="stars"><%= '★'.repeat(product.rating) %><%= '☆'.repeat(5-product.rating) %></span>
+          <span class="review-count">(<%= product.reviews %> reviews)</span>
+        </div>
+        <div class="detail-price">₹<%= product.price.toLocaleString() %></div>
+        <div class="detail-compat">
+          <strong>Compatible with:</strong> <%= product.compat %>
+        </div>
+        <p class="detail-desc"><%= product.desc %></p>
+
+        <div class="detail-actions">
+          <div class="qty-selector">
+            <button class="qty-btn" id="qtyMinus">−</button>
+            <input type="number" value="1" min="1" max="99" id="qtyInput" class="qty-input">
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button class="btn-primary btn-add-cart-big" data-id="<%= product.id %>">
+            🛒 Add to Cart
+          </button>
+        </div>
+
+        <div class="detail-meta">
+          <div class="meta-item"><span class="meta-label">Category</span> <a href="/products?category=<%= product.category %>"><%= product.category %></a></div>
+          <div class="meta-item"><span class="meta-label">Brand</span> <a href="/brands/<%= product.brandId %>"><%= product.brand %></a></div>
+          <div class="meta-item"><span class="meta-label">SKU</span> PAP-<%= String(product.id).padStart(5,'0') %></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Related -->
+    <% if(related.length) { %>
+    <div class="related-section">
+      <div class="eyebrow">More Like This</div>
+      <h2 class="section-title small">RELATED PRODUCTS</h2>
+      <div class="products-grid four-col">
+        <% related.forEach(p => { %>
+        <%- include('../partials/product-card', { p }) %>
+        <% }) %>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<script>
+  // Qty selector
+  const minus = document.getElementById('qtyMinus');
+  const plus  = document.getElementById('qtyPlus');
+  const input = document.getElementById('qtyInput');
+  minus.addEventListener('click', () => { if(input.value > 1) input.value--; });
+  plus.addEventListener('click',  () => { if(input.value < 99) input.value++; });
+</script>
+<%- include('../partials/scripts') %>

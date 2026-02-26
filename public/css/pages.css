@@ -1,0 +1,92 @@
+/* ── pages.css ── */
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 70px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(232,27,27,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse at 15% 80%, rgba(232,27,27,0.06) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(232,27,27,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,27,27,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-container {
+  position: relative; z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.hero-content { max-width: 640px; }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(76px, 11vw, 136px);
+  line-height: 0.88;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.hero-subtitle {
+  font-size: 17px; font-weight: 300;
+  line-height: 1.7; color: var(--gray);
+  margin-bottom: 36px; max-width: 480px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  flex-shrink: 0;
+}
+.stat { text-align: right; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 56px; color: var(--white); line-height: 1;
+}
+.stat-num span { color: var(--red); }
+.stat-lbl {
+  font-family: var(--font-cond); font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+}
+
+/* ─── BRANDS SECTION ─── */
+.brands-section { background: var(--dark); }
+
+/* ─── CATEGORIES SECTION ─── */
+.categories-section { background: var(--black); }
+
+/* ─── PRODUCTS SECTION ─── */
+.products-section { background: var(--dark); }
+
+/* ─── WHY SECTION ─── */
+.why-section {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.why-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(232,27,27,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.why-section .container { position: relative; z-index: 1; }
+
+/* ─── TESTIMONIALS SECTION ─── */
+.testi-section { background: var(--dark2); }

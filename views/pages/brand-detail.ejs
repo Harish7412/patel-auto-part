@@ -1,0 +1,33 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/brands">Brands</a> <span>›</span> <span><%= brand.name %></span></div>
+    <div class="brand-hero-icon"><%= brand.emoji %></div>
+    <h1 class="page-title"><%= brand.name.toUpperCase() %> PARTS</h1>
+    <p class="page-sub"><%= brandProducts.length %> products available · <%= brand.country %></p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <% if(brandProducts.length === 0) { %>
+    <div class="empty-state">
+      <div class="empty-icon"><%= brand.emoji %></div>
+      <h3>Coming Soon</h3>
+      <p>Parts for <%= brand.name %> are being added. Contact us for sourcing.</p>
+      <a href="/contact" class="btn-primary">Contact Us</a>
+    </div>
+    <% } else { %>
+    <div class="products-grid">
+      <% brandProducts.forEach(p => { %>
+      <%- include('../partials/product-card', { p }) %>
+      <% }) %>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

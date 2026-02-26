@@ -1,0 +1,67 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-hero mini">
+  <div class="container">
+    <div class="eyebrow">Your Order</div>
+    <h1 class="page-title">MY CART</h1>
+    <p class="page-sub"><%= cart.length %> item(s) in your cart</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <% if(cart.length === 0) { %>
+    <div class="empty-state">
+      <div class="empty-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Add some parts to get started.</p>
+      <a href="/products" class="btn-primary">Browse Parts</a>
+    </div>
+    <% } else { %>
+    <div class="cart-layout">
+      <div class="cart-items">
+        <% cart.forEach(item => { %>
+        <div class="cart-item">
+          <img src="<%= item.img %>" alt="<%= item.name %>" class="cart-item-img">
+          <div class="cart-item-info">
+            <div class="product-brand-tag"><%= item.brand %></div>
+            <div class="cart-item-name"><%= item.name %></div>
+            <div class="cart-item-compat"><%= item.compat %></div>
+          </div>
+          <div class="cart-item-price">₹<%= item.price.toLocaleString() %></div>
+          <div class="cart-item-qty">× <%= item.qty %></div>
+          <div class="cart-item-total">₹<%= (item.price * item.qty).toLocaleString() %></div>
+          <form action="/cart/remove" method="POST" style="margin:0">
+            <input type="hidden" name="id" value="<%= item.id %>">
+            <button type="submit" class="cart-remove" aria-label="Remove">✕</button>
+          </form>
+        </div>
+        <% }) %>
+      </div>
+
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>₹<%= total.toLocaleString() %></span></div>
+        <div class="summary-row"><span>Shipping</span><span><% if(total>=2000){ %>FREE<% } else { %>₹99<% } %></span></div>
+        <% if(total < 2000) { %>
+        <div class="summary-tip">Add ₹<%= (2000-total).toLocaleString() %> more for free shipping!</div>
+        <% } %>
+        <div class="summary-row total"><span>Total</span><span>₹<%= (total + (total>=2000?0:99)).toLocaleString() %></span></div>
+        <div class="promo-input-wrap">
+          <input type="text" placeholder="Promo code" class="promo-input">
+          <button class="btn-outline btn-sm">Apply</button>
+        </div>
+        <button class="btn-primary btn-full">Proceed to Checkout</button>
+        <a href="/products" class="btn-outline btn-full" style="margin-top:8px;text-align:center;display:block;">Continue Shopping</a>
+        <form action="/cart/clear" method="POST" style="margin-top:8px">
+          <button type="submit" class="btn-ghost btn-full">Clear Cart</button>
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

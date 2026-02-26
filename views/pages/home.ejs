@@ -1,0 +1,229 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container hero-container">
+    <div class="hero-content reveal">
+      <div class="eyebrow">Trusted Since 1995 · Jaipur, Rajasthan</div>
+      <h1 class="hero-title">
+        PATEL<br>
+        <span class="accent">AUTO</span><br>
+        PARTS
+      </h1>
+      <p class="hero-subtitle">Premium motorcycle components for every ride, every brand, every budget. Genuine OEM parts and high-performance aftermarket upgrades — all under one roof.</p>
+      <div class="hero-btns">
+        <a href="/products" class="btn-primary">Explore Parts</a>
+        <a href="/brands"   class="btn-outline">Browse Brands</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal-right">
+      <div class="stat">
+        <div class="stat-num">50<span>K+</span></div>
+        <div class="stat-lbl">Parts Stocked</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">25<span>+</span></div>
+        <div class="stat-lbl">Bike Brands</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30<span>Y</span></div>
+        <div class="stat-lbl">Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <% const tickerItems = ['Hero','Honda','Bajaj','Royal Enfield','TVS','Yamaha','Suzuki','KTM','Kawasaki','Harley-Davidson','Ducati','BMW Motorrad','Triumph','Jawa','⚡ Free Shipping on ₹2000+']; %>
+    <% [...tickerItems,...tickerItems].forEach(item => { %>
+      <span class="ticker-item"><%= item %></span>
+    <% }) %>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-bar-section">
+  <div class="container search-inner">
+    <span class="search-label">Find Parts</span>
+    <form class="search-form" action="/products" method="GET">
+      <input type="text" name="q" placeholder="Search by part name, model, or part number..." autocomplete="off">
+      <button type="submit" class="search-btn">🔍 Search</button>
+    </form>
+    <div class="filter-chips">
+      <a href="/products"                     class="chip active">All</a>
+      <a href="/products?category=engine"     class="chip">Engine</a>
+      <a href="/products?category=brakes"     class="chip">Brakes</a>
+      <a href="/products?category=suspension" class="chip">Suspension</a>
+      <a href="/products?category=electricals"class="chip">Electricals</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BRANDS
+══════════════════════════════════ -->
+<section class="section brands-section" id="brands-section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="eyebrow">All Major Brands</div>
+      <h2 class="section-title">EVERY BRAND.<br>EVERY MODEL.</h2>
+    </div>
+    <div class="brands-grid">
+      <% brands.forEach(brand => { %>
+      <a href="/brands/<%= brand.id %>" class="brand-card reveal-item">
+        <div class="brand-icon"><%= brand.emoji %></div>
+        <div class="brand-name"><%= brand.name %></div>
+        <div class="brand-count"><%= brand.count.toLocaleString() %>+ Parts</div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CATEGORIES
+══════════════════════════════════ -->
+<section class="section categories-section" id="categories-section">
+  <div class="container">
+    <div class="section-header split">
+      <div>
+        <div class="eyebrow">Browse Categories</div>
+        <h2 class="section-title">SHOP BY<br>COMPONENT</h2>
+      </div>
+      <p class="section-desc">From engine internals to body panels — every part organised for fast discovery.</p>
+    </div>
+    <div class="cat-grid">
+      <% categories.forEach(cat => { %>
+      <a href="/products?category=<%= cat.id %>" class="cat-card <%= cat.span2 ? 'cat-span2' : '' %> reveal-item">
+        <img src="<%= cat.img %>" alt="<%= cat.name %>" loading="lazy">
+        <div class="cat-overlay">
+          <div class="cat-tag"><%= cat.tag %></div>
+          <div class="cat-name"><%= cat.name %></div>
+          <div class="cat-sub"><%= cat.desc %> · <%= cat.count.toLocaleString() %> parts</div>
+        </div>
+        <div class="cat-arrow">→</div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FEATURED PRODUCTS
+══════════════════════════════════ -->
+<section class="section products-section" id="products-section">
+  <div class="container">
+    <div class="section-header split">
+      <div>
+        <div class="eyebrow">Top Sellers</div>
+        <h2 class="section-title">POPULAR<br>PARTS</h2>
+      </div>
+      <a href="/products" class="btn-outline">View All Products</a>
+    </div>
+    <div class="products-grid">
+      <% featuredProducts.forEach(p => { %>
+      <%- include('../partials/product-card', { p }) %>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <div class="promo-text">
+    <div class="promo-eyebrow">Limited Time Offer</div>
+    <div class="promo-title">FLAT 20% OFF<br>ENGINE PARTS</div>
+    <div class="promo-sub">Use code <strong>PATEL20</strong> at checkout · Valid till 31 March 2026</div>
+  </div>
+  <a href="/products?category=engine" class="btn-white">Grab the Deal →</a>
+</div>
+
+<!-- ══════════════════════════════════
+     WHY US
+══════════════════════════════════ -->
+<section class="section why-section" id="about-section">
+  <div class="container why-grid">
+    <div>
+      <div class="eyebrow">Why Choose Us</div>
+      <h2 class="section-title">YOUR TRUSTED<br>PARTS PARTNER</h2>
+      <p class="section-desc">Three decades serving Rajasthan's riders — from daily commuters to passionate enthusiasts building dream machines.</p>
+      <div class="features-grid">
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">✅</span>
+          <div class="feat-title">Genuine Parts</div>
+          <div class="feat-desc">100% authentic OEM and certified aftermarket from verified suppliers.</div>
+        </div>
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">🚀</span>
+          <div class="feat-title">Fast Delivery</div>
+          <div class="feat-desc">Same-day dispatch for Jaipur. Pan-India delivery in 2–5 days.</div>
+        </div>
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">🔁</span>
+          <div class="feat-title">Easy Returns</div>
+          <div class="feat-desc">15-day no-questions-asked returns with full refund guarantee.</div>
+        </div>
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">🛠️</span>
+          <div class="feat-title">Expert Advice</div>
+          <div class="feat-desc">Certified mechanics help you find the exact right part.</div>
+        </div>
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">💰</span>
+          <div class="feat-title">Best Prices</div>
+          <div class="feat-desc">Price-match guarantee on all products — always.</div>
+        </div>
+        <div class="feature-card reveal-item">
+          <span class="feat-icon">📦</span>
+          <div class="feat-title">50K+ In Stock</div>
+          <div class="feat-desc">Your part is almost always available for immediate dispatch.</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Workshop" class="why-img">
+      <div class="why-badge">
+        <div class="why-badge-num">30+</div>
+        <div class="why-badge-txt">Years Serving<br>Indian Riders</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════ -->
+<section class="section testi-section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="eyebrow">Customer Reviews</div>
+      <h2 class="section-title">WHAT RIDERS SAY</h2>
+    </div>
+    <div class="testi-grid">
+      <% testimonials.forEach(t => { %>
+      <div class="testi-card reveal-item">
+        <div class="testi-quote">"</div>
+        <p class="testi-text"><%= t.text %></p>
+        <div class="testi-author">
+          <div class="testi-avatar"><%= t.initials %></div>
+          <div>
+            <div class="testi-stars"><%= '★'.repeat(t.stars) %></div>
+            <div class="testi-name"><%= t.name %></div>
+            <div class="testi-bike"><%= t.bike %></div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>
