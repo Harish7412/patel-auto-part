@@ -1,10 +1,12 @@
 const express = require('express');
 const router  = express.Router();
+const { contactInfo } = require('../data/contact');
 
 router.get('/', (req, res) => {
   res.render('pages/contact', {
     title: 'Contact Us – Patel Auto Parts',
     activePage: 'contact',
+    contactInfo: contactInfo,
     success: false,
   });
 });
@@ -16,6 +18,7 @@ router.post('/', (req, res) => {
   res.render('pages/contact', {
     title: 'Contact Us – Patel Auto Parts',
     activePage: 'contact',
+    contactInfo: contactInfo,
     success: true,
   });
 });
